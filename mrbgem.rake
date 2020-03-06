@@ -62,6 +62,7 @@ MRuby::Gem::Specification.new('mruby-onig-regexp') do |spec|
         unless ENV['OS'] == 'Windows_NT'
           if build.kind_of? MRuby::CrossBuild
             host = "--host #{build.host_target ? build.host_target : build.name}"
+            File.write('./configure', File.read('./configure').sub(/lt_cv_prog_gnu_ld=no/, 'lt_cv_prog_gnu_ld=yes'))
           end
 
           _pp 'autotools', oniguruma_dir
